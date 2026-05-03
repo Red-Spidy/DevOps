@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 const PORT = 3000;
-const VERSION = "v2";
+const VERSION = "v3";
 
 app.use(express.static(__dirname));
 
