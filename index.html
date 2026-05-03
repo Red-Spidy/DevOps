@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOps Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        h1 {
+            color: #00ffcc;
+        }
+        .badge {
+            background: #28a745;
+            padding: 5px 15px;
+            border-radius: 20px;
+        }
+        .info {
+            margin-top: 15px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🚀 DevOps Dashboard</h1>
+        <div class="badge">Live System</div>
+        <div class="info" id="data">Loading...</div>
+    </div>
+
+    <script>
+        async function fetchData() {
+            const res = await fetch('/api/status');
+            const data = await res.json();
+
+            document.getElementById('data').innerHTML = `
+                Version: ${data.version}<br>
+                Status: ${data.status}<br>
+                Time: ${data.time}<br>
+                Uptime: ${data.uptime}
+            `;
+        }
+
+        setInterval(fetchData, 1000);
+        fetchData();
+    </script>
+</body>
+</html>
